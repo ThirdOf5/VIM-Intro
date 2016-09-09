@@ -1,0 +1,194 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usetheme{Pittsburgh}
+
+\beamertemplatenavigationsymbolsempty
+\title{VIM: The Basic Part}
+\author{Caleb Jhones}
+\date{8 September 2016}
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+    \frametitle{A bit of history}
+    \pause
+    \begin{itemize}
+        \item Begun by Bram Moolenaar in the late 80s as a port of the Stevie editor (on the 80s Amiga computers)
+        \item Publicly released in 1991, and has been continually updated ever since
+        \item 'Vim' originally stood for '\underline{V}i \underline{IM}itation'. This was later changed to '\underline{V}i \underline{IM}proved' when vim's functionality surpassed that of its predicessor
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Why use vim?}
+    \pause
+    \begin{itemize}
+        \item Because it's the best plaintext editor available!
+        \pause (please don't hurt me) \pause (emacs users, I'm looking at you)
+        \pause
+        \item In reality, either will work very well. I prefer vim because:
+        \pause
+        \begin{itemize}
+            \item All commonly-used commands are single (or sometimes two) keystrokes
+            \pause
+            \item If you're using a standard keyboard layout, the control key can be inconvenient to reach
+            \pause
+            \item Modal editing (more on this later)
+            \pause
+            \item Mainly, it's what I started learning, and have grown to like
+        \end{itemize}
+        \pause
+        \item Brace yourselves.... if you've never used vim before, what follows will be like a fire-hose. I'm partly intending this to be a reference for you all, so don't worry about absorbing everything right now
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modal editing}
+    \pause
+    \begin{itemize}
+        \item In more GUI-dependent text editors, you need to use the mouse very often (for moving the cursor, selecting file menus, \&c). It also depends on things like arrow keys and modifier keys (\texttt{Shift}, \texttt{Control}, \texttt{Alt}, \&c)
+        \pause
+        \item This means you need to move your hands away from the home row, which is slow and annoying
+        \pause
+        \item Vim removes these problems by being driven completely using a keyboard (rather than a keyboard and mouse), and making only sparing use of modifier keys
+        \pause
+        \item This is possible using \textbf{modes}. Each key on the keyboard does something different in each mode, meaning you have many possible functions of each key, beyond simply typing that letter into a file
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modes}
+    % normal (aka command)
+    \pause
+    \begin{itemize}
+        \item Normal (sometimes called command) mode:
+        \begin{itemize}
+            \item No text in the bottom left corner of your console window
+            \item Used to get to other modes, for cursor movement, copy/pasting, saving, etc...
+            \item This is where you begin when you open a vim window
+            \item To return here from other modes, press the \texttt{Esc} key
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modes}
+    % insert mode
+    \begin{itemize}
+        \item Insert mode:
+        \begin{itemize}
+            \item Normal mode is great. But this is a text editor, and I want to type!
+            \pause
+            \item From normal mode, press \texttt{i} to get to insert mode
+            \item You are now able to edit files! Type away to your heart's content!
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modes}
+    % visual and visual line mode
+    \begin{itemize}
+        \item Visual mode:
+        \begin{itemize}
+            \item From normal mode, press \texttt{v}
+            \item You can now select text one character or (partial) line at a time using your cursor
+        \end{itemize}
+        \pause
+        \item Visual line mode:
+        \begin{itemize}
+            \item From normal mode, press \texttt{V} (captial V)
+            \item Now you can select text one (whole) line at a time
+        \end{itemize}
+        \pause
+        \item Visual block mode:
+        \begin{itemize}
+            \item From normal mode, press \texttt{Ctrl+v}
+            \item Now select using \texttt{h}, \texttt{j}, \texttt{k}, and \texttt{l} in blocks (hence the name)
+            \item Using \texttt{Shift+i}, you can insert text at the beginning of your selection (see example)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Basic commands, from normal mode}
+    % hjkl, i/o/a
+    \pause
+    \begin{itemize}
+        \item \texttt{h}, \texttt{j}, \texttt{k}, and \texttt{l} move the cursor left, down, up, and right, respectively
+        \pause
+        \item \texttt{i} puts you into insert mode, right where the cursor is
+        \pause
+        \item \texttt{a} puts you into insert mode, one character to the right of the cursor
+        \item \texttt{A} puts you into insert mode at the end of the current line
+        \pause
+        \item \texttt{o} inserts a line below the current line, and puts you into insert mode on that line
+        \item \texttt{O} (captial O) is the same as lower-case \texttt{o}, but a line above
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Basic commands, from normal mode}
+    %dd/yy/x, p, w/b
+    \begin{itemize}
+        \item \texttt{dd} will delete an entire line, and \texttt{yy} will copy an entire line (whichever line the cursor is on)
+        \item \texttt{x} deletes the character under the cursor. \texttt{X} deletes the character before the cursor
+        \pause
+        \item \texttt{p} will paste whatever is in the buffer currently
+        \begin{itemize}
+            \item How do you put something into the paste buffer? With \texttt{x}, \texttt{dd}, or \texttt{yy}! These also function as what you would think of as cut and copy
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Basic commands, from normal mode}
+    % u/C-r, w/b, gg/G
+    \begin{itemize}
+        \item \texttt{u} can be used to undo, and \texttt{Ctrl+r} to redo
+        \pause
+        \item \texttt{w} moves the cursor forward by one word at a time, and \texttt{b} moves it back
+        \pause
+        \item \texttt{gg} moves the cursor to the top of the file
+        \item \texttt{G} moves the cursor to the bottom of the file
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Saving, loading, quitting}
+    % :w [filename], :q[!], :wq/:x
+    \pause
+    \begin{itemize}
+        \item So we're finally done with editing our file, and we want to save. Or maybe we decided we didn't need the edits we made afterall
+        \pause
+        \item Type \texttt{:w} from normal mode to save the file (you can do this at any point in the edit process)
+        \item \texttt{:q} will exit vim, without saving. If you have unsaved edits, it will warn you of this and not exit
+        \item \texttt{:q!} exits silently and without saving. Only use this if you really don't want your file changes!
+        \item Lastly, these can be strung together to save and quit, i.e. \texttt{:wq}. There is also \texttt{:x}, which does the same thing
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Other cool tricks}
+    % gg=G, ==, ctrl+p, :!<command>
+    \pause
+    \begin{itemize}
+        \item Use \texttt{gg=G} to retab an entire file (as vim sees appropriate! Not always correct, sadly)
+        \item You can also just use \texttt{==} to do a single line
+        \pause
+        \item You can auto-complete any word that vim has already seen in the file by using \texttt{Ctrl+p}
+        \pause
+        \item You can also run shell commands straight from vim (particularly useful for things like \texttt{make}). Type \texttt{:!<your command>} and it will be run in your shell
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Now for Jack}
+    \centering
+    \includegraphics[width=150pt]{./vimlogo.png}
+\end{frame}
+
+\end{document}
